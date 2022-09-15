@@ -8,7 +8,7 @@ import static io.qameta.allure.Allure.step;
 import static tests.demoqa.TestData.*;
 import static java.lang.String.format;
 
-public class RegistrationFormTests extends TestBase{
+public class RegistrationFormTests extends TestBase {
 
     RegistrationFormSearchElements registrationFormSearchElements = new RegistrationFormSearchElements();
 
@@ -35,22 +35,21 @@ public class RegistrationFormTests extends TestBase{
                     .setCity(getCity());
             $("#submit").pressEnter();
         });
+        step("Checking the result form", () -> {
+            String expectedFullName = format("%s %s", getFirstName(), getLastName());
+            registrationFormSearchElements.checkResultVisible();
+            registrationFormSearchElements.checkResult("Student Name", expectedFullName)
+                    .checkResult("Student Email", getEmail())
+                    .checkResult("Gender", getGender())
+                    .checkResult("Mobile", getPhoneNumber())
+                    .checkResult("Date of Birth", getBirthDay())
+                    .checkResult("Subjects", getSubjects())
+                    .checkResult("Hobbies", getHobbies())
+                    .checkResult("Picture", getFileName())
+                    .checkResult("Address", getCurrentAddress())
+                    .checkResult("State and City", getStateAndCity());
 
-step("Checking the result form", () -> {
-    String expectedFullName = format("%s %s",getFirstName() ,getLastName());
-    registrationFormSearchElements.checkResultVisible();
-    registrationFormSearchElements.checkResult("Student Name", expectedFullName)
-            .checkResult("Student Email",getEmail())
-            .checkResult("Gender", getGender())
-            .checkResult("Mobile",getPhoneNumber())
-            .checkResult("Date of Birth", getBirthDay())
-            .checkResult("Subjects", getSubjects())
-            .checkResult("Hobbies", getHobbies())
-            .checkResult("Picture", getFileName())
-            .checkResult("Address",getCurrentAddress())
-            .checkResult("State and City", getStateAndCity());
-
-});
+        });
 
     }
 }
