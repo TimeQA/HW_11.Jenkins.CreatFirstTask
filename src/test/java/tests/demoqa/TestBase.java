@@ -8,12 +8,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import tests.Attach.Attach;
 
+import static java.lang.String.format;
+
 public class TestBase {
     @BeforeAll
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-//        String remoteURL = System.getProperty("remoteURL");
+        String login = System.getProperty("login");
+        String pass = System.getProperty("pass");
+        String remoteURL = "https://" + pass + login + System.getProperty("remote");
+
+
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 //        capabilities.setCapability("browserName", "chrome");
@@ -24,9 +30,9 @@ public class TestBase {
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        Configuration.remote = remoteURL;
     }
-
+//    https://user1:1234@selenoid.autotests.cloud/wd/hub
     @AfterEach
     void addAttachments() {
         Attach.screenshotAs("Last screenshot");
