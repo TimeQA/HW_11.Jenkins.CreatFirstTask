@@ -65,7 +65,7 @@ public class SystemPropertiesTest {
     @Tag("hello")
     void simplePropertiesTest5() {
         System.out.println("Hello, " + System.getProperty("some_text", "qa.guru"));
-        System.out.println("This is remote URL " + System.getProperty("remote", "qa.guru"));
+        System.out.println("This is remote URL " + System.getProperty("REMOTE_URL"));
         String browserVersion = System.getProperty("browser_version", "101");
     }
 
