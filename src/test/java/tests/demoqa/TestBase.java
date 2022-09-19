@@ -15,9 +15,7 @@ public class TestBase {
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        String login = System.getProperty("login");
-        String pass = System.getProperty("pass");
-        String remoteURL = "https://" + pass + ":" + login + "." + System.getProperty("remote");
+        String remoteURL = "https://user1:1234@selenoid." + System.getProperty("remote");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -27,9 +25,9 @@ public class TestBase {
             capabilities.setCapability("enableVideo", true);
         }
 
-        Configuration.browserCapabilities = capabilities;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1920x1080";
+//        Configuration.browserCapabilities = capabilities;
+//        Configuration.baseUrl = "https://demoqa.com";
+//        Configuration.browserSize = "1920x1080";
     }
 //    https://user1:1234@selenoid.autotests.cloud/wd/hub
     @AfterEach
