@@ -15,7 +15,7 @@ public class TestBase {
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        String remoteURL = "https://user1:1234@selenoid." + System.getProperty("remote");
+        String remoteURL = System.getProperty("remote");
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
