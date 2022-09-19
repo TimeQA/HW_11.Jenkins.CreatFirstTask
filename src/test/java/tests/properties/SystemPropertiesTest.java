@@ -1,5 +1,6 @@
 package tests.properties;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class SystemPropertiesTest {
@@ -29,6 +30,7 @@ public class SystemPropertiesTest {
         System.out.println(browserName); // opera
     }
     @Test
+    @Tag("properties")
     void simplePropertiesTest4() {
         String browserVersion = System.getProperty("browser_version", "101");
         String browserSize = System.getProperty("browser_size", "1920x1080");
@@ -44,6 +46,44 @@ public class SystemPropertiesTest {
                 1920x1080
                 firefox
 
+    gradle clean properties_test
+                101
+                1920x1080
+                firefox
 
+    gradle clean properties_test -Dbrowser_name=safari
+                101
+                1920x1080
+                safari
+     gradle clean properties_test -Dbrowser_name=safari -Dbrowser_version=99.0 -Dbrowser_size=300x300
+                99
+                300x300
+                safari
      */
+
+    @Test
+    @Tag("hello")
+    void simplePropertiesTest5() {
+        System.out.println("Hello, " + System.getProperty("some_text", "qa.guru"));
+        String browserVersion = System.getProperty("browser_version", "101");
+    }
+
+    /*
+        gradle clean hello_test
+            Hello, qa.guru
+
+        gradle clean hello_test -Dsome_text=students
+            Hello, students
+
+        gradle clean hello_test -Dsome_text=students of qa.guru
+                FAILURE: Build failed with an exception.
+                * What went wrong:
+                Task 'of' not found in root project 'qa_guru_14_11_jenkins'.
+
+        gradle clean hello_test -Dsome_text="students of qa.guru"
+            Hello, students of qa.guru
+
+        gradle clean hello_test "-Dsome_text=students of qa.guru"
+            Hello, students of qa.guru
+         */
 }

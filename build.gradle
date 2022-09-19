@@ -8,7 +8,7 @@ repositories {
 }
 
 def allureVersion = "2.19.0",
-        slf4jVersion = "1.7.32"
+        slf4jVersion = '2.0.0'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -39,6 +39,7 @@ dependencies {
 }
 
 tasks.withType(Test) {
+    systemProperties(System.getProperties())
     useJUnitPlatform()
 
     testLogging {
@@ -49,4 +50,14 @@ tasks.withType(Test) {
     }
 }
 
-test {}
+task properties_test(type: Test) {
+    useJUnitPlatform{
+        includeTags "properties"
+    }
+}
+
+task hello_test(type: Test) {
+    useJUnitPlatform{
+        includeTags "hello"
+    }
+}
