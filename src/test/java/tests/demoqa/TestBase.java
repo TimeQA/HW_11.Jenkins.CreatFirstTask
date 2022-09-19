@@ -17,7 +17,7 @@ public class TestBase {
 
         String login = System.getProperty("login");
         String pass = System.getProperty("pass");
-        String remoteURL = "https://" + pass + login + System.getProperty("remote");
+        String remoteURL = "https://" + pass + ":" + login + "." + System.getProperty("remote");
 
 
 
