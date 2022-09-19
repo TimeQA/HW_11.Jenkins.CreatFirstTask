@@ -8,8 +8,6 @@ import org.junit.jupiter.api.BeforeAll;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import tests.Attach.Attach;
 
-import static java.lang.String.format;
-
 public class TestBase {
     @BeforeAll
     static void configure() {
@@ -25,9 +23,9 @@ public class TestBase {
             capabilities.setCapability("enableVideo", true);
         }
 
-//        Configuration.browserCapabilities = capabilities;
-//        Configuration.baseUrl = "https://demoqa.com";
-//        Configuration.browserSize = "1920x1080";
+        Configuration.browserCapabilities = capabilities;
+        Configuration.baseUrl = "https://demoqa.com";
+        Configuration.browserSize = "1920x1080";
     }
 //    https://user1:1234@selenoid.autotests.cloud/wd/hub
     @AfterEach
