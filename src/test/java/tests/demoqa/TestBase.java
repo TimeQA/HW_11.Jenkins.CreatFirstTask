@@ -19,18 +19,17 @@ public class TestBase {
         String pass = System.getProperty("pass");
         String remoteURL = "https://" + pass + ":" + login + "." + System.getProperty("remote");
 
-
-
         DesiredCapabilities capabilities = new DesiredCapabilities();
-//        capabilities.setCapability("browserName", "chrome");
-//        capabilities.setCapability("browserVersion", "100.0");
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
+
+        if (System.getProperty(System.getProperty("remote")) != null) {
+            Configuration.remote = remoteURL;
+            capabilities.setCapability("enableVNC", true);
+            capabilities.setCapability("enableVideo", true);
+        }
 
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
-        Configuration.remote = remoteURL;
     }
 //    https://user1:1234@selenoid.autotests.cloud/wd/hub
     @AfterEach
@@ -38,6 +37,8 @@ public class TestBase {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();
+        if (System.getProperty("selenide.remote") != null) {
+            Attach.addVideo();
+        }
     }
 }
