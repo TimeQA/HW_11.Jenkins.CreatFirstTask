@@ -62,7 +62,7 @@ task hello_test(type: Test) {
     }
 }
 
-task hello_test(type: Test) {
+task registration_form_test(type: Test) {
     useJUnitPlatform{
         includeTags "registration"
     }
