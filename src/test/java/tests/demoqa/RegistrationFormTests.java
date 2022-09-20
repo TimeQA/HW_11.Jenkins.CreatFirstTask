@@ -1,6 +1,7 @@
 package tests.demoqa;
 
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -13,6 +14,7 @@ public class RegistrationFormTests extends TestBase {
     RegistrationFormSearchElements registrationFormSearchElements = new RegistrationFormSearchElements();
 
     @Test
+    @Tag("registration")
     void practiceFormTest() {
 
         step("Open registration form", () -> {
