@@ -15,16 +15,16 @@ public class TestBase {
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        if (System.getProperty("remote") != null) {
-            Configuration.browserCapabilities = capabilities;
-            Configuration.remote = System.getProperty("remote");
-        }
-
         Configuration.browserCapabilities = capabilities;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
         capabilities.setCapability("enableVNC", true);
         capabilities.setCapability("enableVideo", true);
+
+        if (System.getProperty("remote") != null) {
+            Configuration.browserCapabilities = capabilities;
+            Configuration.remote = System.getProperty("remote");
+        }
     }
 //    https://user1:1234@selenoid.autotests.cloud/wd/hub
     @AfterEach
