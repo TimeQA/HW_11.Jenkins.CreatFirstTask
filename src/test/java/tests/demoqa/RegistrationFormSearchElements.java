@@ -1,5 +1,6 @@
 package tests.demoqa;
 import com.codeborne.selenide.SelenideElement;
+import tests.Elements.Button;
 import tests.components.CalendarComponent;
 import tests.components.ResultComponent;
 
@@ -26,6 +27,9 @@ public class RegistrationFormSearchElements {
             addressInput = $("#currentAddress"),
             stateInput = $("#state"),
             cityInput = $("#city");
+    Button submit = new Button("submit", $(byText("Submit")));
+
+//            SelenideElement submit = $("#Submit");
 
 
     //Actions
@@ -109,6 +113,12 @@ public class RegistrationFormSearchElements {
     public RegistrationFormSearchElements setCity(String value) {
         $("#city").click();
         cityInput.$(byText(value)).click();
+
+        return this;
+    }
+
+    public RegistrationFormSearchElements pressSubmit() {
+        submit.click();
 
         return this;
     }
